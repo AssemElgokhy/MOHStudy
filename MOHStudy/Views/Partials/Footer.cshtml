@@ -1,11 +1,15 @@
 ﻿@inherits UmbracoViewPage
 
+@{
+    var siteSettings = Model.GetSiteSettings();
+    if (siteSettings?.FooterContetn is null) return;
+}
 
-<!-- Footer-->
 <footer class="footer text-center">
     <div class="container">
         <div class="row">
-            <!-- Footer Location-->
+            @await Html.GetBlockGridItemsHtmlAsync(siteSettings.FooterContetn)
+            @* <!-- Footer Location-->
             <div class="col-lg-4 mb-5 mb-lg-0">
                 <h4 class="text-uppercase mb-4">Location</h4>
                 <p class="lead mb-0">
@@ -30,11 +34,11 @@
                     <a href="http://startbootstrap.com">Start Bootstrap</a>
                     .
                 </p>
-            </div>
+            </div> *@
         </div>
     </div>
 </footer>
 <!-- Copyright Section-->
 <div class="copyright py-4 text-center text-white">
-    <div class="container"><small>Copyright &copy; @Umbraco.GetDictionaryValue("CopyrightStatement","MOH") @DateTimeOffset.UtcNow.Year</small></div>
+    <div class="container"><small>&copy; @Umbraco.GetDictionaryValue("CopyrightStatement", "Copyright Paul Seal") @DateTime.Now.Year</small></div>
 </div>
